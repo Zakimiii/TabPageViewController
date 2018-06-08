@@ -19,16 +19,18 @@ public struct TabPageOption {
 
     public init() {}
 
-    public var fontSize = UIFont.systemFontSize
-    public var currentColor = UIColor(red: 105/255, green: 182/255, blue: 245/255, alpha: 1.0)
-    public var defaultColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-    public var tabHeight: CGFloat = 32.0
+    public var currentFont = UIFont(name: "HiraginoSans-W6", size: 13)!
+    public var defaultFont = UIFont(name: "HiraginoSans-W3", size: 13)!
+    public var currentBarColor = UIColor(red: 0.69, green: 0.62, blue: 1.00, alpha: 1.00)
+    public var currentTextColor = UIColor(red: 0.20, green: 0.20, blue: 0.20, alpha: 1.00)
+    public var defaultTextColor = UIColor(red: 0.24, green: 0.27, blue: 0.31, alpha: 1.00)
+    public var tabHeight: CGFloat = 40.0
     public var tabMargin: CGFloat = 20.0
     public var tabWidth: CGFloat?
-    public var currentBarHeight: CGFloat = 2.0
-    public var tabBackgroundColor: UIColor = .white
-    public var pageBackgoundColor: UIColor = UIColor.white
-    public var isTranslucent: Bool = true
+    public var currentBarHeight: CGFloat = 4.0
+    public var tabBackgroundColor = UIColor.white
+    public var pageBackgoundColor = UIColor.white
+    public var isTranslucent = false
     public var hidesTopViewOnSwipeType: HidesTopContentsOnSwipeType = .none
 
     internal var tabBarAlpha: CGFloat {

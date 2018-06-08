@@ -10,7 +10,7 @@ import UIKit
 
 class TabCollectionCell: UICollectionViewCell {
 
-    var tabItemButtonPressedBlock: ((Void) -> Void)?
+    var tabItemButtonPressedBlock: (() -> Void)?
     var option: TabPageOption = TabPageOption() {
         didSet {
             currentBarViewHeightConstraint.constant = option.currentBarHeight
@@ -31,7 +31,7 @@ class TabCollectionCell: UICollectionViewCell {
             } else {
                 unHighlightTitle()
             }
-            currentBarView.backgroundColor = option.currentColor
+            currentBarView.backgroundColor = option.currentBarColor
             layoutIfNeeded()
         }
     }
@@ -47,7 +47,7 @@ class TabCollectionCell: UICollectionViewCell {
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        if item.characters.count == 0 {
+        if item.count == 0 {
             return CGSize.zero
         }
 
@@ -84,13 +84,13 @@ extension TabCollectionCell {
     }
 
     func highlightTitle() {
-        itemLabel.textColor = option.currentColor
-        itemLabel.font = UIFont.boldSystemFont(ofSize: option.fontSize)
+        itemLabel.textColor = option.currentTextColor
+        itemLabel.font = option.currentFont
     }
 
     func unHighlightTitle() {
-        itemLabel.textColor = option.defaultColor
-        itemLabel.font = UIFont.systemFont(ofSize: option.fontSize)
+        itemLabel.textColor = option.defaultTextColor
+        itemLabel.font = option.defaultFont
     }
 }
 

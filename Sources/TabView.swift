@@ -89,7 +89,7 @@ internal class TabView: UIView {
 
         collectionView.scrollsToTop = false
 
-        currentBarView.backgroundColor = option.currentColor
+        currentBarView.backgroundColor = option.currentBarColor
         currentBarViewHeightConstraint.constant = option.currentBarHeight
         if !isInfinity {
             currentBarView.removeFromSuperview()
@@ -221,7 +221,7 @@ extension TabView {
         } else {
             currentIndex = index
         }
-        let indexPath = IndexPath(item: index, section: 0)
+        let indexPath = IndexPath(item: currentIndex, section: 0)
         moveCurrentBarView(indexPath, animated: true, shouldScroll: true)
     }
 
@@ -277,7 +277,7 @@ extension TabView {
     fileprivate func deselectVisibleCells() {
         collectionView
             .visibleCells
-            .flatMap { $0 as? TabCollectionCell }
+            .compactMap { $0 as? TabCollectionCell }
             .forEach { $0.isCurrent = false }
     }
 }
