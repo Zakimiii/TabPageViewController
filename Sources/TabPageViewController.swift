@@ -8,7 +8,12 @@
 
 import UIKit
 
+public protocol TabPageViewControllerDelegate: class {
+    func tabPageViewController(_ viewController: TabPageViewController, updateCurrentIndex index: Int)
+}
+
 open class TabPageViewController: UIPageViewController {
+    open weak var tabPageDelegate: TabPageViewControllerDelegate?
     open var isInfinity: Bool = false
     open var option: TabPageOption = TabPageOption()
     open var tabItems: [(viewController: UIViewController, title: String)] = []
@@ -183,6 +188,7 @@ extension TabPageViewController {
 
         tabView.pageItemPressedBlock = { [weak self] (index: Int, direction: UIPageViewControllerNavigationDirection) in
             self?.displayControllerWithIndex(index, direction: direction, animated: true)
+            self?.tabPageDelegate?.tabPageViewController(self!, updateCurrentIndex: index)
         }
 
         tabBarTopConstraint = top
@@ -346,6 +352,7 @@ extension TabPageViewController: UIPageViewControllerDelegate {
         if let currentIndex = currentIndex , currentIndex < tabItemsCount {
             tabView.updateCurrentIndex(currentIndex, shouldScroll: false)
             beforeIndex = currentIndex
+            tabPageDelegate?.tabPageViewController(self, updateCurrentIndex: currentIndex)
         }
 
         tabView.updateCollectionViewUserInteractionEnabled(true)
