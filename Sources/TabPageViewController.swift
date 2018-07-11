@@ -35,7 +35,7 @@ open class TabPageViewController: UIPageViewController {
     lazy fileprivate var tabView: TabView = self.configuredTabView()
     fileprivate var statusView: UIView?
     fileprivate var statusViewHeightConstraint: NSLayoutConstraint?
-    fileprivate var tabBarTopConstraint: NSLayoutConstraint?
+    public var tabBarTopConstraint: NSLayoutConstraint?
 
     public init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
